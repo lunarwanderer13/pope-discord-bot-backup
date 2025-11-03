@@ -1,16 +1,3 @@
-export default {
-    name: "messageCreate",
-    once: false,
-    execute(message) {
-        if (message.content === "2137"
-            && Date.now().getHours() == "16" && Date.now().getMinutes() == "13") {
-            console.log(true)
-        }
-
-        console.log(Date.now().getHours())
-    }
-}
-
 export const name = "messageCreate"
 export const once = false
 export function execute(message) {
