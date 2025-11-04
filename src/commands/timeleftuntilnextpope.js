@@ -1,4 +1,4 @@
-import { SlashCommandBuilder, MessageFlags } from "discord.js"
+import { SlashCommandBuilder } from "discord.js"
 
 export const data = new SlashCommandBuilder()
     .setName("timeleftuntilnextpope")
