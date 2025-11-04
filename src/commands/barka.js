@@ -61,6 +61,7 @@ export async function execute(interaction) {
                     Razem z Tobą nowy zacznę dziś łów`
             }
         ])
+
         .paginateFields()
         .render()
 }
