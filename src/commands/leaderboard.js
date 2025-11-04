@@ -6,10 +6,10 @@ export const data = new SlashCommandBuilder()
     .setDescription("Zobacz kto lubi kremówki najbardziej!")
 
 export async function execute(interaction) {
-    let pope_list = JSON.parse(fs.readFileSync("src/logs/pope.json"))
+    const pope_list = JSON.parse(fs.readFileSync("src/logs/pope.json"))
 
-    let popes_array = [...pope_list].sort((a, b) => a.popes - b.popes)
-    let popes_row_array = [...pope_list].sort((a, b) => a.popes_in_a_row - b.popes_in_a_row)
+    const popes_array = [...pope_list].sort((a, b) => a.popes - b.popes)
+    const popes_row_array = [...pope_list].sort((a, b) => a.popes_in_a_row - b.popes_in_a_row)
 
     let top_popes = ""
     let top_popes_row = ""
@@ -24,7 +24,7 @@ export async function execute(interaction) {
         top_popes_row += `**${i + 1}**. \`${member_popes_row.displayName}\`\n`
     }
 
-    let Embed = new EmbedBuilder()
+    const Embed = new EmbedBuilder()
         .setTitle("Tablica kremówkowych wyników")
         .setColor("#69bccd")
         .setThumbnail(interaction.client.user.displayAvatarURL())
