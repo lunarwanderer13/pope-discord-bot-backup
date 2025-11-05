@@ -6,7 +6,8 @@ export const data = new SlashCommandBuilder()
 
 export async function execute(interaction) {
     await interaction.reply({
-        content: `Pong! *${interaction.createdTimestamp - Date.now()}ms*`,
+        //content: `Pong! *${Date.now() - interaction.createdTimestamp}ms*`,
+        content: "Pong!",
         flags: MessageFlags.Ephemeral
     })
 }
