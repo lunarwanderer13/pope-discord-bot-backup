@@ -1,16 +1,17 @@
 import { AttachmentBuilder } from "discord.js"
 import fs from "fs"
+import path from "path"
 import "dotenv/config"
 
 export const name = "messageCreate"
 export const once = false
 export function execute(message) {
-    const kremufki = [
-        "src\\images\\kremufka1.png",
-        "src\\images\\kremufka2.png",
-        "src\\images\\kremufka3.png",
-        "src\\images\\kremufka4.png"
-    ]
+    const kremufki = []
+    const imagesPath = path.join(process.cwd(), "src", "images", "kremufki")
+    const imagesFiles = fs.readdirSync(imagesPath).filter(f => f.endsWith(".png"))
+    for (const image of imagesFiles) {
+        kremufki.push(path.join(imagesPath, image))
+    }
 
     let now = new Date()
     const hours = now.getHours()
