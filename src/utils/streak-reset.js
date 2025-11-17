@@ -1,5 +1,5 @@
-const fs = require("fs")
-const schedule = require("node-schedule")
+import fs from "fs"
+import schedule from "node-schedule"
 
 schedule.scheduleJob("30 21 * * *", () => {
     let now = new Date()
