@@ -16,7 +16,7 @@
     "url": "https://github.com/Generacja-Innowacja/pope-discord-bot"
   },
   "dependencies": {
-    "discord.js": "^14.24.2",
+    "discord.js": "^14.25.1",
     "dotenv": "^17.2.3",
     "pagination.djs": "^4.0.18"
   },
