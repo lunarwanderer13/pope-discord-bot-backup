@@ -1,3 +1,4 @@
+import fs from "fs"
 import "dotenv/config"
 
 export const name = "messageCreate"
@@ -5,9 +6,10 @@ export const once = false
 export function execute(message) {
     if (message.author.id == process.env.CLIENT_ID) return;
 
+    const flags = JSON.parse(fs.readFileSync("src/logs/flags.json"))
     const message_content = message.content.toLowerCase()
 
-    if (message_content.search("dzień dobry") >= 0 || message_content.search("dzien dobry") >= 0) {
+    if (!flags.good_day_is_typing && (message_content.search("dzień dobry") >= 0 || message_content.search("dzien dobry") >= 0)) {
         // Co chcesz przez to powiedzieć?
         // Czy życzysz mi dobrego dnia;
         // czy oznajmiasz, że dzień jest dobry,
@@ -15,6 +17,8 @@ export function execute(message) {
         // czy sam się dobrze tego ranka czujesz,
         // czy może uważasz, że dzisiaj należy być dobrym?
 
+        flags.good_day_is_typing = true
+        fs.writeFileSync("src/logs/flags.json", JSON.stringify(flags, null, 4))
         message.reply("Co chcesz przez to powiedzieć?")
 
         const lines = [
@@ -31,6 +35,8 @@ export function execute(message) {
             line++
 
             if (line > 4) {
+                flags.good_day_is_typing = false
+                fs.writeFileSync("src/logs/flags.json", JSON.stringify(flags, null, 4))
                 clearInterval(interval)
             }
         }, 2000)
