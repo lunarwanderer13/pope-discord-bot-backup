@@ -35,4 +35,8 @@ export function execute(message) {
         const response = responses[Math.floor(Math.random() * responses.length)]
         message.reply(response)
     }
+
+    if (message_content.search("niech będzie pochwalony jezus chrystus") >= 0 || message_content.search("niech bedzie pochwalony jezus chrystus") >= 0) {
+        message.reply("Na wieki wieków, amen!")
+    }
 }
