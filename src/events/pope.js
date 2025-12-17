@@ -37,14 +37,14 @@ export function execute(message) {
             pope_list.push(entry)
         }
 
-        if (hours === 21 && minutes === 37) {
-            if (message.channel.id != process.env.CHANNEL_ID) {
-                return message.reply({
-                    content: "Możesz pisać 2137 tylko na kanale 2137!",
-                    flags: MessageFlags.Ephemeral
-                })
-            }
+        if (message.channel.id != process.env.CHANNEL_ID) {
+            return message.reply({
+                content: "Możesz pisać 2137 tylko na kanale 2137!",
+                flags: MessageFlags.Ephemeral
+            })
+        }
 
+        if (hours === 21 && minutes === 37) {
             const kremufki = []
             const imagesPath = path.join(process.cwd(), "src", "images", "kremufki")
             const imagesFiles = fs.readdirSync(imagesPath).filter(f => f.endsWith(".png"))
