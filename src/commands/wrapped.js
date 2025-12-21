@@ -23,13 +23,16 @@ export async function execute(interaction) {
 
     await interaction.deferReply()
 
+    let reply_message = ""
+    const target = interaction.options.getUser("user") ?? interaction.user
+
     const wrapped = JSON.parse(fs.readFileSync("src/logs/wrapped.json"))
-    let wrapped_entry = wrapped.find(e => e.id === interaction.user.id)
+    let wrapped_entry = wrapped.find(e => e.id === target.id)
 
     if (!wrapped_entry) {
         entry = {
-            id: interaction.user.id,
-            username: interaction.user.username,
+            id: target.id,
+            username: target.username,
             popes: 0,
             most_popes_in_a_row: 0,
             gandalf: 0,
@@ -42,14 +45,11 @@ export async function execute(interaction) {
     }
 
     // In case someone changed their username
-    wrapped_entry.username = interaction.user.username
-
-    let reply_message = ""
-    const target = interaction.options.getUser("user") ?? interaction.user
+    wrapped_entry.username = target.username
 
     const WrappedEmbed = new EmbedBuilder()
         .setTitle(`PopeWrapped™ ${new Date().getFullYear()}`)
-        .setThumbnail(interaction.user.displayAvatarURL())
+        .setThumbnail(target.displayAvatarURL())
         .setColor("#69bccd")
 
         .setFields(
